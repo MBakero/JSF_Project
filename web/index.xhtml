@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="title">Accueil</ui:define>
+        <ui:define name="content">
+            <div class="row text-center">
+                <div class="col-sm-4">
+                    <p><h:graphicImage name="images/user1.jpg" height="130px" width="130px" alt="" /></p>
+                    <h3>Responsable 1ère année</h3>
+                    <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+                    <p><a href="" target="_blank" class="btn btn-primary">Suite...</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><h:graphicImage name="images/user2.jpg" height="130px" width="130px" alt="" /></p>
+                    <h3>Responsable 2éme année</h3>
+                    <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+                    <p><a href="" target="_blank" class="btn btn-primary">Suite...</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <p><h:graphicImage name="images/user3.png" height="130px" width="130px" alt="" /></p>
+                    <h3>Responsable 3ème année</h3>
+                    <p>Non ipsum vulputate condimentum eu id tellus. Praesent commodo arcu quis rhoncus porttitor. Suspendisse volutpat, quam eu rutrum laoreet, ex sapien pellentesque.</p>
+                    <p><a href="" target="_blank" class="btn btn-primary">Suite...</a></p>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="lkmala">
+            <!-- ========== WELCOME END ========== -->
+
+            <!-- ========== RECENT COURSES START ========== -->
+
+            <section id="featured-posts" class="alt-background">
+                <div class="container">
+
+                    <h2 class="text-center carousel-title">
+                        Postes des cours récents
+                        <a href="">Voir Tout</a>
+                    </h2>
+
+                    <!-- OWL CAROUSEL START -->
+                    <div class="owl-carousel">
+
+                        <ui:repeat value="#{posteCoursController.findAllDescLimit(5)}" var="item">
+                            <div class="item" style="height: 400px; width: 320px;">
+                                <h:graphicImage style="height: 280px; width: 280px;" name="images/matieres/#{item.matiere.libelle}.jpg" alt=""  />
+                                <h3><a href="#">#{item.titre}</a></h3>
+                                <div class="meta">
+                                    <p><span href="#" class="label label-info" style="font-size: small;">#{item.posteur.login}</span></p>
+                                    <h:panelGroup rendered="#{item.difficulte!=null}">
+                                        <p><i class="icon icon-068 green"> </i>#{item.difficulte}</p>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="price">15 <span class="fa fa-thumbs-o-up"></span></div>
+                            </div>
+                        </ui:repeat>
+
+                    </div>
+                    <!-- OWL CAROUSEL END -->
+
+                </div>
+            </section>
+
+            <!-- ========== RECENT COURSES END ========== -->
+
+
+            <!-- ========== POPULAR COURSES START ========== -->
+
+            <section id="popular-courses">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="carousel-title">
+                                Cours Populaires
+                                <a href="">Voir Tous Les Cours</a>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p><a href=""><h:graphicImage name="images/popular1.jpg" alt="" class="img-responsive" /></a></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p><a href=""><h:graphicImage name="images/popular2.jpg" alt="" class="img-responsive" /></a></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p><a href=""><h:graphicImage name="images/popular3.jpg" alt="" class="img-responsive" /></a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== POPULAR COURSES END ========== -->
+
+            
+        </ui:define>
+
+
+    </ui:composition>
+
+
+</html>
+

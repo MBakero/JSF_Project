@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><ui:insert name="title">Title</ui:insert></title>
+        <link rel="shortcut icon" href="images/favicon.png"/>
+        <!-- Main Stylesheet -->
+        <h:outputStylesheet name="css/style.css" />
+        <h:outputScript name="js/jquery-1.11.3.min.js" />
+        <ui:insert name="style-script"></ui:insert>
+        <!-- Modernizr Plugin -->
+        <h:outputScript name="js/modernizr.custom.97074.js"/>
+
+
+        <!-- Bootstrap Plugins -->
+        <h:outputScript name="js/bootstrap.min.js"/>
+
+        <!-- Retina Plugin -->
+        <h:outputScript name="js/retina-1.1.0.min.js"/>
+
+        <!-- Superslides Plugin -->
+        <h:outputScript name="js/jquery.easing.1.3.js"/>
+        <h:outputScript name="js/jquery.animate-enhanced.min.js"/>
+        <h:outputScript name="js/jquery.superslides.js"/>
+
+        <!-- Owl Carousel Plugin -->
+        <h:outputScript name="js/owl.carousel.min.js"/>
+
+        <!-- Parallax ImageScroll Plugin -->
+        <h:outputScript name="js/jquery.parallax-1.1.3.js"/>
+
+        <!-- Fancybox Plugin -->
+        <h:outputScript name="js/jquery.fancybox.js"/>
+
+        <!-- ImagesLoaded Plugin -->
+        <h:outputScript name="js/imagesloaded.pkgd.min.js"/>
+
+        <!-- Masonry Plugin -->
+        <h:outputScript name="js/masonry.pkgd.min.js"/>
+
+        <!-- Progressbar Plugin -->
+        <h:outputScript name="js/bootstrap-progressbar.js"/>
+
+        <!-- Scroll Reveal Plugin -->
+        <h:outputScript name="js/scrollReveal.js"/>
+
+        <!-- Magic Form Processing -->
+        <h:outputScript name="js/magic.js"/>
+
+        <!-- jQuery Settings -->
+        <h:outputScript name="js/settings.js"/>
+    </h:head>
+    <h:body>
+        <header>
+            <!-- ==== TOOLS START ==== -->
+            <div class="tools">
+                <div class="container">
+                    <ul class="pull-left">
+                        <li><h:link ><i class="fa fa-phone"></i><span>1800-123-456</span></h:link></li>
+                        <li><h:link ><i class="fa fa-envelope"></i><span>info@ensias.com</span></h:link></li>
+                        <li><h:link outcome="/data/admin/index" rendered="#{userController.type=='ADMIN'}" >ADMINISTRATION</h:link></li>
+                    </ul>
+                    <nav class="pull-right">
+                        <h:panelGroup rendered="#{userController.connectedUser.login==null}" class="pull-right">
+                            <ul>
+                                <li><h:link outcome="/data/register"><i class="fa fa-user"></i><span>S'inscrire</span></h:link>></li>
+                                <li><h:link outcome="/data/login"><i class="fa fa-lock"></i><span>Se connecter</span></h:link>></li>
+                            </ul>
+                        </h:panelGroup>
+                    </nav>
+
+                    <h:panelGroup rendered="#{userController.connectedUser.login!=null}" class="pull-right">
+                        <h:form>
+                            <ul>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle user"  data-toggle="dropdown" href="#">
+                                        <span style="margin-right: 19px" > #{userController.connectedUser.prenom} #{userController.connectedUser.nom}</span>
+                                        <h:graphicImage id="avatar-pic" height="30px" width="30px"  library="avatars" name="#{userController.connectedUser.avatar}" class="img-circle img-nav-top"/>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user animated fadeInUp" style=" z-index: 2000;margin-top: 14px; margin-left: 102px;">
+                                        <li>
+                                            <h:link  outcome="#{userController.profileType()}" style="margin-left: 0px;">
+                                                <i class="fa fa-user fa-fw"></i> Profile
+                                            </h:link>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><h:commandLink style="margin-left: 0px;" action="#{userController.logout()}"><i class="fa fa-sign-out fa-fw"></i> DECONNEXION</h:commandLink></li>
+                                    </ul>                        
+                                </li>
+                            </ul>
+                        </h:form>
+                    </h:panelGroup>
+                </div>
+            </div>
+            <!-- ==== TOOLS END ==== -->
+            <!-- ==== NAVBAR START ==== -->
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <h:form>
+                    <div class="container">
+                        <div class="navbar-header">
+                            <h:link  class="navbar-brand"><h:graphicImage name="images/logo.png" alt="ENSIAS Plateforme" class="img-responsive logo" /></h:link>
+                        </div>
+                        <nav class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:link outcome="/index">Accueil</h:link></li>
+                                <li class="dropdown"><a  class="dropdown-toggle" data-toggle="dropdown">Cours<b class="caret"></b></a>
+
+                                    <ul class="dropdown-menu">
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('IWIM')}" value ="Filière IWIM"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('GL')}" value ="Filière GL"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('EMBI')}" value ="Filière  EMBI"></h:commandLink>  </li>                                      
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('IEL')}" value ="Filière  IEL"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('SSI')}" value ="Filière  SSI"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteCoursController.filtreByFilier('ISEM')}" value ="Filière  ISEM"></h:commandLink></li>
+                                        <li class="divider"></li>
+                                        <li><h:commandLink rendered="#{userController.connectedUser.login!=null}" value="Nouveau Poste" action="#{posteCoursController.goToCreate()}" ></h:commandLink></li>
+                                        <li><h:commandLink action="#{posteCoursController.goToList()}" value="Liste des Poste"/></li>
+                                    </ul>
+
+                                </li>
+
+                                <li class="dropdown"><a  class="dropdown-toggle" data-toggle="dropdown">Discussions<b class="caret"></b></a>
+
+                                    <ul class="dropdown-menu">
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('IWIM')}" value ="Filière IWIM"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('GL')}" value ="Filière GL"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('EMBI')}" value ="Filière  EMBI"></h:commandLink>  </li>                                      
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('IEL')}" value ="Filière  IEL"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('SSI')}" value ="Filière  SSI"></h:commandLink></li>
+                                        <li><h:commandLink  action="#{posteDiscussionController.filtreByFilier('ISEM')}" value ="Filière  ISEM"></h:commandLink></li>
+                                        <li class="divider"></li>
+                                        <li><h:commandLink rendered="#{userController.connectedUser.login!=null}" value="Nouveau Probleme" action="#{posteDiscussionController.goToCreate()}" ></h:commandLink></li>
+                                        <li><h:commandLink action="#{posteDiscussionController.goToList()}" value="Toutes Les Discussions"/></li>
+                                    </ul>
+
+                                </li>
+                                <li class="dropdown"><a  class="dropdown-toggle" data-toggle="dropdown">Professeurs<b class="caret"></b></a>
+                                    
+                                    <ul class="dropdown-menu">
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('IWIM')}" value="Département IWIM" ></h:commandLink></li>
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('GL')}" value="Département GL" ></h:commandLink></li>
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('EMBI')}" value="Département eMBI" ></h:commandLink></li>
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('IEL')}" value="Département IeL" ></h:commandLink></li>
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('ISEM')}" value="Département ISEM" ></h:commandLink></li>
+                                        <li><h:commandLink  action="#{professeurController.listProfsByDepart('SSI')}" value="Département SSI" ></h:commandLink></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a  class="dropdown-toggle" data-toggle="dropdown">Classement<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link >Cours</h:link></li>
+                                        <li><h:link >Etudiants</h:link></li>
+                                    </ul>
+                                </li>
+                                <li><h:link outcome="/data/apropos">A propos</h:link></li>
+
+                                <li><h:link outcome="/data/contact">Contactez-nous</h:link></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </h:form>
+            </div>
+            <!-- ==== NAVBAR END ==== -->
+        </header>
+        <!-- ========== TITLE START ========== -->
+
+        <div class="title">
+            <div class="title-image"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <ui:insert name="title">Title</ui:insert>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TITLE END ========== -->
+
+        <!-- ========== CONTENT START ========== -->
+
+        <section id="content">
+            <div class="container">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </section>
+
+        <!-- ========== CONTENT END ========== -->
+        <!-- ========== HEADER END ========== -->
+        <ui:insert name="lkmala"></ui:insert>
+
+        <!-- ========== LINKS START ========== -->
+        <div id="links">
+            <div class="container">
+                <div class="row">
+
+                    <!-- ==== QUICK LINKS START == -->
+                    <div class="col-sm-3">
+                        <h3>Racourcis</h3>
+                        <nav>
+                            <ul>
+                                <li><h:link outcome="/data/poste/list"><i class="fa fa-angle-right"></i>Tous Les Cours</h:link></li>
+                                <li><h:link ><i class="fa fa-angle-right"></i>Professeurs</h:link></li>
+                                <li><h:link ><i class="fa fa-angle-right"></i>Les Cours Des Profs</h:link></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- ==== QUICK LINKS END == -->
+
+                    <!-- ==== LATEST COURSES START == -->
+                    <div class="col-sm-3">
+                        <h3>Derniers Cours</h3>
+                        <ul>
+                            <li>
+                                <h:graphicImage name="images/thumb-course4.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Web Design</h:link></h5>
+                                <p class="author"><h:link >Etudiant X</h:link></p>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/thumb-course5.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Developpement Web</h:link></h5>
+                                <p class="author"><h:link >Etudiant Y</h:link></p>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/thumb-course6.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Developpment Mobile</h:link></h5>
+                                <p class="author"><h:link >Etudiant Z</h:link></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ==== LATEST COURSES END == -->
+
+                    <!-- ==== POPULAR COURSES START == -->
+                    <div class="col-sm-3">
+                        <h3>Cours Populaires</h3>
+                        <ul>
+                            <li>
+                                <h:graphicImage name="images/thumb-course4.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Web Design</h:link></h5>
+                                <p class="author"><h:link >Etudiant X</h:link></p>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/thumb-course5.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Developpement Web</h:link></h5>
+                                <p class="author"><h:link >Etudiant Y</h:link></p>
+                            </li>
+                            <li>
+                                <h:graphicImage name="images/thumb-course6.jpg" alt="" class="pull-left" />
+                                <h5><h:link >Developpment Mobile</h:link></h5>
+                                <p class="author"><h:link >Etudiant Z</h:link></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ==== POPULAR COURSES END == -->
+
+                    <!-- ==== LATEST COMMENTS START == -->
+                    <div class="col-sm-3">
+                        <h3>Derniers Commentaires</h3>
+                        <ul>
+                            <li>
+                                <p><h:link >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut rutrum eros, a rutrum urna.</h:link></p>
+                                <p class="author"><h:link >Etudiant X</h:link></p>
+                            </li>
+                            <li>
+                                <p><h:link >Donec lorem mi, eleifend sit amet varius vitae, ullamcorper et urna. Aliquam tincidunt tempus purus vitae laoreet.</h:link></p>
+                                <p class="author"><h:link >Etudiant Y</h:link></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ==== LATEST COMMENTS END == -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== LINKS END ========== -->
+
+        <!-- ========== FOOTER START ========== -->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+
+                    <!-- ==== CREDITS START == -->
+                    <div class="col-sm-8">
+                        &copy; 2015 ENSIAS Plateforme
+                    </div>
+                    <!-- ==== CREDITS END == -->
+
+                    <!-- ==== SOCIAL ICONS START == -->
+                    <div class="col-sm-4 text-right">
+                        <h:link ><i class="fa fa-facebook fa-lg"></i></h:link>
+                        <h:link ><i class="fa fa-twitter fa-lg"></i></h:link>
+                        <h:link ><i class="fa fa-linkedin fa-lg"></i></h:link>
+                        <h:link ><i class="fa fa-youtube fa-lg"></i></h:link>
+                    </div>
+                    <!-- ==== SOCIAL ICONS END == -->
+
+                </div>
+            </div>
+        </footer>
+
+        <!-- ========== FOOTER END ========== -->
+    </h:body>
+</html>

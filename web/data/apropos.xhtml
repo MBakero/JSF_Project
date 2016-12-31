@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Professeur"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h:graphicImage name="images/ebooks.jpg" height="500px" width="600px" alt="" />
+                        </div>
+                        <div class="col-sm-6">
+                            <h1>Bienvenue sur la Plateforme ENSIAS</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus ipsum. Nunc maximus sapien ac dui vulputate tincidunt. Morbi luctus nisi vel suscipit volutpat. Donec vitae auctor nisl. Ut malesuada felis in erat rutrum ultrices. Fusce iaculis ornare nunc rutrum ornare. Proin ut placerat enim, vel venenatis urna. Phasellus sed diam tincidunt mauris malesuada mattis et in nisl. Quisque massa eros, molestie at mi eget, aliquam tristique eros. Nullam aliquet placerat magna ut eleifend. Phasellus iaculis tristique laoreet.</p>
+                            <ul>
+                                <li>Fusce iaculis ornare nunc rutrum ornare.</li>
+                                <li>Proin ut placerat enim, vel venenatis urna.</li>
+                                <li>Phasellus sed diam tincidunt mauris malesuada mattis et in nisl.</li>
+                                <li>Quisque massa eros, molestie at mi eget, aliquam tristique eros.</li>
+                                <li>Nullam aliquet placerat magna ut eleifend.</li>
+                                <li>Phasellus iaculis tristique laoreet.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== CONTENT END ========== -->
+
+            <!-- ========== SKILLS START ========== -->
+
+            <section id="skills" class="alt-background text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>Statistiques des cours</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="20">
+                                    <span class="pull-left">Web Design</span>
+                                    <span class="pull-right">20%</span>
+                                </div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="50">
+                                    <span class="pull-left">Developpement Web</span>
+                                    <span class="pull-right">60%</span>
+                                </div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="30">
+                                    <span class="pull-left">Developpment Mobile</span>
+                                    <span class="pull-right">30%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SKILLS END ========== -->
+        </ui:define>
+    </ui:composition>
+</html>
+

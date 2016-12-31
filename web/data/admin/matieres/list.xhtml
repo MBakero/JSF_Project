@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/tempalte_admin.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Liste des Matières"></h:outputText>
+        </ui:define>
+        <ui:define name="body">  
+            <h:form id="form-list">
+                <h:outputScript library="js" name="reselove.js" />
+                <p:growl id="messages" showDetail="true" />
+                <div class="row">
+                    <div class="div-controls">
+                        <div class="btn-group">
+                            <h:commandLink title="Supprimer les matières sélectionnés"
+                                           class="btn btn-danger" >
+                                <i class="fa fa-eraser"></i>
+                            </h:commandLink>
+                        </div>
+                        <h:commandLink value="Ajouter" class="btn btn-primary pull-right" action="#{matiereController.goToCreate()}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <h:dataTable id="dataList" value="#{matiereController.matieres}" var="item" styleClass="table table-striped table-checkbox table-pagination">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ID Matière"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Libellé"/>
+                            </f:facet>
+                            <h:outputText value="#{item.libelle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <div class="btn-group">
+                                <h:commandLink title="supprimer la matièere" class="btn btn-danger" action="#{matiereController.delete(item)}" onclick="return window.confirm('Vous voulez vraiment supprimer');">  
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </h:commandLink>
+                                <h:commandLink title="Modifier les données" class="btn btn-info" action="#{matiereController.goToEdit(item)}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </h:commandLink>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

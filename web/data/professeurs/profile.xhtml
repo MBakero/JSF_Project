@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Professeur X"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h:graphicImage name="images/user2.jpg" alt="" class="img-responsive" />
+                        </div>
+                        <div class="col-sm-6">
+                            <h1>professeur X</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus ipsum. Nunc maximus sapien ac dui vulputate tincidunt. Morbi luctus nisi vel suscipit volutpat. Donec vitae auctor nisl. Ut malesuada felis in erat rutrum ultrices. Fusce iaculis ornare nunc rutrum ornare. Proin ut placerat enim, vel venenatis urna. Phasellus sed diam tincidunt mauris malesuada mattis et in nisl. Quisque massa eros, molestie at mi eget, aliquam tristique eros. Nullam aliquet placerat magna ut eleifend. Phasellus iaculis tristique laoreet.</p>
+                            <ul>
+                                <li>Fusce iaculis ornare nunc rutrum ornare.</li>
+                                <li>Proin ut placerat enim, vel venenatis urna.</li>
+                                <li>Phasellus sed diam tincidunt mauris malesuada mattis et in nisl.</li>
+                                <li>Quisque massa eros, molestie at mi eget, aliquam tristique eros.</li>
+                                <li>Nullam aliquet placerat magna ut eleifend.</li>
+                                <li>Phasellus iaculis tristique laoreet.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== CONTENT END ========== -->
+
+            <!-- ========== RELATED COURSES START ========== -->
+
+            <section id="featured-posts" class="alt-background">
+                <div class="container">
+
+                    <h2 class="text-center carousel-title">
+                        Ses Cours
+                        <a href="#">View All Courses</a>
+                    </h2>
+
+                    <!-- OWL CAROUSEL START -->
+                    <div class="owl-carousel">
+
+                        <div class="item">
+                            <a href=""><h:graphicImage name="images/php.jpg" width="345px" height="259px" alt="" class="img-responsive" /></a>
+                            <h3><a href="">Programmation Web PHP</a></h3>
+                            <div class="meta">
+                                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href=""><h:graphicImage name="images/java.png" width="345px" height="259px" alt="" class="img-responsive" /></a>
+                            <h3><a href="">Programmation JAVA</a></h3>
+                            <div class="meta">
+                                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href=""><h:graphicImage name="images/uml.gif" width="345px" height="259px" alt="" class="img-responsive" /></a>
+                            <h3><a href="">Langage de Modélisation Unifié</a></h3>
+                            <div class="meta">
+                                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <a href=""><h:graphicImage name="images/android.jpg" width="345px" height="259px" alt="" class="img-responsive" /></a>
+                            <h3><a href="">Developpement mobile</a></h3>
+                            <div class="meta">
+                                <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- OWL CAROUSEL END -->
+
+                </div>
+            </section>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

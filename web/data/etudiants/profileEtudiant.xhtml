@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:outputStylesheet name="css/.css" />
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title" >
+            <h:outputText value="Contact"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="container">
+                <div class="row   ">
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">#{userController.getfullEtudiant().login}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 " align="center"> <h:graphicImage name="images/sidebar-post1.jpg"  class="img-circle img-responsive"></h:graphicImage> </div>
+
+                                    <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                                      <dl>
+                                        <dt>DEPARTMENT:</dt>
+                                        <dd>Administrator</dd>
+                                        <dt>HIRE DATE</dt>
+                                        <dd>11/12/2013</dd>
+                                        <dt>DATE OF BIRTH</dt>
+                                           <dd>11/12/2013</dd>
+                                        <dt>GENDER</dt>
+                                        <dd>Male</dd>
+                                      </dl>
+                                    </div>-->
+                                    <div class=" col-md-9 col-lg-9 "> 
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Prenom:</td>
+                                                    <td>#{userController.getfullEtudiant().prenom}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nom:</td>
+                                                    <td>#{userController.getfullEtudiant().nom}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Department:</td>
+                                                    <td>IWIM</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>date d'inscreption:</td>
+                                                    <td><h:outputText value="#{posteCoursController.posteCours.date}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                                                        </h:outputText></td>
+                                                </tr>
+                                                <tr>
+                                                    <tr>
+                                                        <td>Gender</td>
+                                                        <td>Male</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Address</td>
+                                                        <td>Metro Manila,Philippines</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td><a href="mailto:info@support.com">#{userController.getfullEtudiant().email    }</a></td>
+                                                    </tr>
+                                                    <td>Phone Number</td>
+                                                    <td>123-4567-890(Landline)<br></br>555-4567-890(Mobile)
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <h:link  class="btn btn-primary">List mes cours</h:link>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="fa fa-envelope"></i></a>
+                                <span class="pull-right">
+                                    <a href="edit.html" title="Editer" type="button" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="style-script">
+            <h:outputStylesheet name="css/app.css" />
+            <h:outputScript name="js/app.js" />
+            <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+            <h:outputScript name="js/bootstrap-tagsinput" />
+        </ui:define>
+        <ui:define name="title" >
+            <h:outputText value="Profile"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="container">
+                <div class="row   ">
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">#{userController.getfullProfesseur().login}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <h:form enctype="multipart/form-data" id="formAvatar">
+                                        <div class="col-xs-12">
+                                            <div class="avatar-timeline">
+                                                <h:graphicImage id="avatar" library="avatars" name="#{userController.connectedUser.avatar}" class="img-thumbnail" height="140px" width="140px"/>
+                                                <span>
+                                                    <h:commandLink action="index" onclick="document.getElementById('formAvatar:upload').click();
+                                                            return false;">
+                                                        <i class="fa fa-camera"></i> Changer l'avatar
+                                                    </h:commandLink>
+                                                    <h:inputFile id="upload" value="#{userController.avatar}" style="visibility: hidden; width: 1px; height: 1px">
+                                                        <f:ajax listener="#{userController.upload}" render="@all"/>
+                                                    </h:inputFile>
+                                                </span>
+                                            </div>
+                                            <a href="#" class="btn btn-default pull-right btn-edit-profil"><i class="fa fa-pencil-square-o"></i> Modifier</a>
+                                        </div>
+
+                                    </h:form>
+
+                                    <div style="width: 98%; margin-left: 6px;"> 
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Prenom:</td>
+                                                    <td>#{userController.getfullProfesseur().prenom}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nom:</td>
+                                                    <td>#{userController.getfullProfesseur().nom}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Department:</td>
+                                                    <td>#{userController.getfullProfesseur().departement}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>date d'inscreption:</td>
+                                                    <td>
+                                                        <h:outputText value="#{userController.getfullProfesseur().dateInscription}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                                                        </h:outputText></td>
+                                                </tr>
+                                                <tr>
+                                                    <tr>
+                                                        <td>Gender</td>
+                                                        <td>Male</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Address</td>
+                                                        <td>Metro Manila,Philippines</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td><a href="mailto:#{userController.getfullProfesseur().email}">#{userController.getfullProfesseur().email}</a></td>
+                                                    </tr>
+                                                    <td>Phone Number</td>
+                                                    <td>123-4567-890(Landline)<br></br>555-4567-890(Mobile)
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <h:link  class="btn btn-primary">List mes cours</h:link>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                                <span class="pull-right">
+                                    <a href="edit.html" title="Editer" type="button" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

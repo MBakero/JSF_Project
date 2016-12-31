@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:outputStylesheet name="css/commentaire.css" />
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Detail du Poste</ui:define>
+        <ui:define name="content">
+            <div class="row">
+
+                <!-- ==== SIDEBAR START == -->
+
+                <div class="col-sm-4">
+                    <!-- ==== COURSE DATA START == -->
+                    <div class="widget" data-scroll-reveal="x">
+                        <ul>
+                            <li class="price text-center">
+                                FICHE Discussion
+                            </li>
+                            <li class="course-data" title="Matière">
+                                <span class="fa fa-book green"></span>
+                                <span class="pull-right">#{posteDiscussionController.posteDiscussion.matiere.libelle}</span>
+                            </li>
+                            <li class="course-data" title="Niveau Scolaire">
+                                <span class="fa fa-group green"></span>
+                                <h:panelGroup rendered="#{posteDiscussionController.posteDiscussion.niveauScolaire==1}"><span title="Niveau" class="pull-right">1ère Année</span></h:panelGroup>
+                                <h:panelGroup rendered="#{posteDiscussionController.posteDiscussion.niveauScolaire==2}"><span title="Niveau" class="pull-right">2ème Année</span></h:panelGroup>
+                                <h:panelGroup rendered="#{posteDiscussionController.posteDiscussion.niveauScolaire==3}"><span title="Niveau" class="pull-right">3ème Année</span></h:panelGroup>
+                            </li>
+                            <li class="course-data" title="Filière">
+                                <span class="fa fa-sitemap green"></span>
+                                <span class="pull-right">#{posteDiscussionController.posteDiscussion.filiere}</span>
+                            </li>
+                            <li class="course-data" title="Date Poste">
+                                <span class="fa fa-calendar green"></span>
+                                <span class="pull-right">
+                                    <h:outputText value="#{posteDiscussionController.posteDiscussion.date}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </span>
+                            </li>
+                        </ul>
+                        <h:form>
+                            <p>
+                                <h:commandLink id='likeBtn'  class="btn btn-primary fa fa-thumbs-o-up fa-2x" title="Like">
+                                </h:commandLink>
+                            </p>
+
+                        </h:form>
+                    </div>
+                    <!-- ==== COURSE DATA END == -->
+
+                    <!-- ==== POSTER START == -->
+                    <div class="widget" data-scroll-reveal='x'>
+                        <h3>Posteur</h3>
+                        <div class="teacher row">
+                            <div class="col-sm-12">
+                                <h:graphicImage rendered="#{posteDiscussionController.posteDiscussion.posteur.avatar==null}" height="30px" width="30px" name="avatars/default159258005521.jpg" class="img-circle pull-left"/>
+                                <h:graphicImage rendered="#{posteDiscussionController.posteDiscussion.posteur.avatar!=null}" height="30px" width="30px" library="avatars" name="#{posteDiscussionController.posteDiscussion.posteur.avatar}" class="img-circle pull-left"/>
+                                <h5><span class="fa fa-user green" style="margin-right: 40px;"></span><a>#{posteDiscussionController.posteDiscussion.posteur.login}</a></h5>
+                                <p><span class="fa fa-envelope green" style="margin-right: 36px;"></span>#{posteDiscussionController.fullPoster.email}</p>
+                                <p><span class="fa fa-calendar green" style="margin-right: 36px;"></span><h:outputText value="#{posteDiscussionController.fullPoster.dateInscription}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                                    </h:outputText></p>
+                            </div>
+                        </div>
+                        <a href="">Profile <i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- ==== POSTER END == -->
+                </div>
+                <!-- ==== SIDEBAR END == -->
+
+                <!-- ==== COURSES START == -->
+
+                <div class="col-sm-8">
+                    <h2 class="lesson-title text-center" style="color: #8FB488;">#{posteDiscussionController.posteDiscussion.titre} #{poste.matiere.picture}</h2>
+                    <div>
+                        <h:graphicImage name="images/matieres/#{posteDiscussionController.posteDiscussion.matiere.picture}" class="img-responsive" width="300px" height="300px" style="float: left; margin-right: 7px; margin-bottom: 20px;"/>
+                        <p style="margin-top: 36px;">#{posteDiscussionController.posteDiscussion.descriptionProbleme}</p>
+                    </div>
+
+                    <div class="detailBox" style=" width: 100%; clear: both;">
+                        <div class="titleBox">
+                            <label>Liste Des Commentaires</label>
+
+                        </div>
+                        <h:form class="form-inline">
+                            <div class="actionBox" >
+
+                                <ul class="commentList" id="commentList">
+                                    <ui:repeat value="#{posteDiscussionController.commentaires}"  var="item">
+                                        <li>
+                                            <div class="commenterImage">
+                                                <h:graphicImage rendered="#{item.posteur.avatar==null}" height="30px" name="avatars/default159258005521.jpg" class="img-circle img-nav-top"/>
+                                                <h:graphicImage rendered="#{item.posteur.avatar!=null}" height="30px" name="avatars/#{item.posteur.avatar}" class="img-circle img-nav-top"/>
+                                            </div>
+                                            <div class="commentText">
+                                                <p class=""> #{item.contenu}</p> <span class="date sub-text"> <h:outputText value="#{item.date}"> 
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText> <span class="label label-info">#{item.posteur.login}</span></span>
+
+                                            </div>
+                                        </li>
+                                    </ui:repeat>
+
+
+
+                                </ul>
+                                <h:panelGroup class="form-group" rendered="#{userController.connectedUser.login!=null}" style="width: 100%">
+                                    <div class="form-group" style=" width: 84%;" >
+                                        <h:inputTextarea id="content-input" style=" width: 98%;"  pt:placeholder="Ajouter un commentaire" class="form-control" value="#{posteDiscussionController.newCommentaire.contenu}"></h:inputTextarea>
+                                    </div>
+
+                                    <h:commandButton  class="btn btn-info" value="Commenter" style="width: 116px;">
+                                        <f:ajax execute="content-input" listener="#{posteDiscussionController.createCommentaire}" render="@form" />
+                                    </h:commandButton>
+                                </h:panelGroup>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>
+

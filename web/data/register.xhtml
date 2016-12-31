@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="S'inscrire"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <h1>S'inscrire</h1>
+                    <h:form id="register-form">
+                        <div class="form-group" id="register-login-group">
+                            <label for="register-input-login">Choisissez votre Login</label>
+                            <div class="input-group">
+                                <h:inputText required="" class="form-control" id="register-input-login" ></h:inputText>
+                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="register-nom-group">
+                            <label for="register-input-nom">Choisissez votre Nom</label>
+                            <div class="input-group">
+                                <h:inputText required="" class="form-control" id="register-input-nom" ></h:inputText>
+                                    <div class="input-group-addon"><i class="fa fa-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="register-prenom-group">
+                            <label for="register-input-prenom">Choisissez votre Prenom</label>
+                            <div class="input-group">
+                                <h:inputText required="" class="form-control" id="register-input-prenom" ></h:inputText>
+                                    <div class="input-group-addon"><i class="fa fa-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="register-email-group">
+                            <label for="register-input-email">Email</label>
+                            <div class="input-group">
+                                <h:inputText  class="form-control" id="register-input-email" ></h:inputText>
+                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                            </div>
+                        </div>
+                        <h:commandButton type="submit" value="S'inscrire" class="btn btn-primary"></h:commandButton>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="style-script">
+            <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+            <h:outputScript name="js/bootstrap-tagsinput.js" />
+            <style>
+                .bootstrap-tagsinput .tag {
+                    font-size: larger;
+                }
+                .bootstrap-tagsinput{
+                    width: 100%;
+                }
+            </style>
+        </ui:define>
+        <ui:define name="title">Nouveau poste</ui:define>
+        <ui:define name="content">
+            <h:form id="poste-form" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group" id="poste-titre-group">
+                            <label for="poste-titre">Titre Poste</label>
+                            <h:inputText value="#{posteCoursController.posteCours.titre}" pt:placeholder="Titre" class="form-control" id="poste-titre"></h:inputText>
+                        </div>
+                        <div class="form-group" id="poste-tag-group">
+                            <p style="margin-bottom: -2px;"><label for="poste-tag">Tag Poste</label></p>
+                            <h:inputText value="#{posteCoursController.newTag.tag}" pt:placeholder="Entrez 3 Tags au plus" class="form-control" id="poste-tag" pt:data-role="tagsinput" style="width: 100%;"></h:inputText>
+                        </div>
+
+                        <div class="form-group" id="poste-description-group">
+                            <label for="poste-description">Déscription</label>
+                            <h:inputTextarea value="#{posteCoursController.posteCours.description}" pt:placeholder="Dire quelque chose sur le poste" class="form-control" id="poste-description" ></h:inputTextarea>
+                        </div>
+                        <div class="form-group" id="poste-niveau-group">
+                            <label for="poste-niveau">Niveau</label>
+                            <h:selectOneMenu value="#{posteCoursController.posteCours.niveauScolaire}" style="width: 36%;" class="form-control" id="poste-niveau">
+                                <f:selectItem itemValue="-1" itemLabel="Choisir le niveau"/>
+                                <f:selectItem itemValue="1" itemLabel="1ère année"/>
+                                <f:selectItem itemValue="2" itemLabel="2ème année"/>
+                                <f:selectItem itemValue="3" itemLabel="3ème année"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="form-group" id="poste-matiere-group">
+                            <label for="poste-matiere">Matière</label>
+                            <h:selectOneMenu value="#{posteCoursController.posteCours.matiere.id}" style="width: 36%;" class="form-control" id="poste-matiere">
+                                <f:selectItem itemValue="-1" itemLabel="Choisir la matière"/>
+                                <f:selectItems value="#{matiereController.matieres}" var="matiere" itemValue="#{matiere.id}" itemLabel="#{matiere.libelle}" />
+                            </h:selectOneMenu>
+                        </div>
+                        <h:panelGroup rendered="#{userController.type=='PROFESSEUR'}" class="form-group" id="poste-difficulte-group">
+                            <label for="poste-difficulte">Difficulté</label>
+                            <h:selectOneMenu value="#{posteCoursController.posteCours.difficulte}" style="width: 36%;" class="form-control" id="poste-difficulte">
+                                <f:selectItems value="#{difficulteController.difficultes}" />
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup class="form-group" id="poste-filiere-group">
+                            <label for="poste-filiere">Filière</label>
+                            <h:selectOneMenu value="#{posteCoursController.posteCours.filiere}" style="width: 36%;" class="form-control" id="poste-filiere">
+                                <f:selectItems value="#{filiereController.filieres}" var="filiere" itemValue="#{filiere.value}" itemLabel="#{filiere.label}" />
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup class="form-group" id="poste-pdf-group">
+                            <label for="poste-pdf">Upload PDF :</label>
+                            <h:commandLink title="Upload" onclick="document.getElementById('poste-form:upload').click(); return false;">
+                                <span class="fa fa-file-pdf-o" style="font-size: xx-large; color: red;margin-left: 42px; margin-top: 13px;"></span>
+                            </h:commandLink>
+                            <h:inputFile id="upload" value="#{posteCoursController.pdf}" style="visibility: hidden; width: 1px; height: 1px">
+                                <!--<f:ajax listener="#{posteCoursController.uploadPdf}"/>-->
+                            </h:inputFile>
+                        </h:panelGroup>
+                    </div>
+                </div>
+                <br></br>
+                <h:commandButton action="#{posteCoursController.create()}" value="créer" class="btn btn-primary" style="margin-right: 41px;"></h:commandButton>
+                <h:commandButton action="#{posteCoursController.goToList()}" value="annuler" class="btn btn-danger"></h:commandButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

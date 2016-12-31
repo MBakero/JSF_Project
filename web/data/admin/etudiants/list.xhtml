@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/tempalte_admin.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Liste Etudiants"></h:outputText>
+        </ui:define>
+        <ui:define name="body">  
+            <h:form id="form-list">
+                <h:outputScript library="js" name="reselove.js" />
+                <p:growl id="messages" showDetail="true" />
+                <div class="row">
+                    <div class="div-controls">
+                        <div class="btn-group">
+                            <h:commandLink title="Supprimer les éléments sélectionnés" action="#{etudiantController.deleteItemChecked()}"
+                                           class="btn btn-danger #{etudiantController.showAction() == false ? 'disabled' : ''}" >
+                                <i class="fa fa-eraser"></i>
+                            </h:commandLink>
+                        </div>
+                        <h:commandLink value="Ajouter" class="btn btn-primary pull-right" action="create"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <h:dataTable id="dataList" value="#{etudiantController.etudiants}" var="item" styleClass="table table-striped table-checkbox table-pagination">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:selectBooleanCheckbox value="#{etudiantController.checkAllInput}" class="input-checkbox-table" >
+                                    <f:ajax listener="#{etudiantController.checkAll}" render="@form dataList"/>
+                                </h:selectBooleanCheckbox>    
+                            </f:facet>
+                            <h:selectBooleanCheckbox value="#{etudiantController.checked[item.id]}" class="input-checkbox-table" >
+                                <f:ajax listener="#{etudiantController.checkThis(null,item)}" render="@form dataList" />
+                            </h:selectBooleanCheckbox>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom complet"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom} #{item.prenom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date inscription"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateInscription}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Taux"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taux}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <div class="btn-group">
+                                <h:commandLink title="details" action="#{etudiantController.goToDetails(item)}" class="btn btn-info">  
+                                    <span class="glyphicon glyphicon-list" ></span>
+                                </h:commandLink>
+                                <h:commandLink title="supprimé le produit" action="#{etudiantController.delete(item)}" class="btn btn-danger" onclick="return window.confirm('Vous voulez vraiment continuer?');">  
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </h:commandLink>
+                                <h:commandLink title="Modifier les données" action="#{etudiantController.goToEdit(item)}" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </h:commandLink>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

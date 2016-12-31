@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:x="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:define name="style-script">
+        <h:outputStylesheet name="css/bootstrap-tagsinput.css"/>
+        <h:outputScript name="js/bootstrap-tagsinput.js" />
+    </ui:define>
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Liste des Cours</ui:define>
+        <ui:define name="content">
+
+            <div class="col-sm-4">
+
+                <!-- ==== FITER START == -->
+
+                <div class="widget" data-scroll-reveal="x">
+                    <h:form>
+                        <h3>Filtrer par année</h3>
+                        <ul>
+                            <li class="checkbox">
+                                <label><input type="checkbox"> 1ère année <span class="pull-right">#{posteDiscussionController.num}</span></input></label>
+                            </li>
+                            <li class="checkbox">
+                                <label><input type="checkbox"> 2ème année <span class="pull-right">7</span></input></label>
+                            </li>
+                            <li class="checkbox">
+                                <label><input type="checkbox"> 3ème année <span class="pull-right">5</span></input></label>
+                            </li>
+                        </ul>
+                        <h:commandLink value="Appliquer" class="btn btn-primary">
+                            <f:ajax listener="#{posteDiscussionController.changeNum}" render="@form"/>
+                        </h:commandLink>
+
+                    </h:form>
+
+                </div>
+
+                <div class="widget" data-scroll-reveal="x">
+                    <h:form id="login-form">
+                        <div class="form-group" id="login-login-group">
+                            <label for="login-input-login">Recherche</label>
+                            <div class="input-group">
+                                <h:inputText  value="#{posteDiscussionController.search}" class="form-control" id="login-input-login" > </h:inputText>
+                                <h:commandLink style="text-decoration: blink;" class="fa fa-search input-group-addon" action="#{posteDiscussionController.recherche()}"></h:commandLink>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <!-- ==== FITER END == -->
+            </div>
+            <!-- ==== COURSES START == -->
+
+            <div class="col-sm-8">
+                <h2>#{posteDiscussionController.posteDiscussiones.size()}</h2>
+                <div class="courses">
+                    <h:form>
+                        <ui:repeat value="#{posteDiscussionController.posteDiscussiones}" var="poste" >
+                            <!-- Course Start --> 
+                            <div class="course row scrolliing" data-scroll-reveal="x">
+                                <div class="col-sm-4">
+                                    <h:graphicImage name="images/matieres/#{poste.matiere.picture}" class="img-responsive"/>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-md-9 col-sm-8">
+                                            <h3>
+                                                <h:commandLink value="#{poste.titre}" action="#{posteDiscussionController.gotoDetail(poste)}"/>
+                                            </h3>
+                                            <div class="meta" style="width: 400px;">
+                                                <span title="Posteur"><i class="fa green fa-user"></i><a href="">#{poste.posteur.login}</a></span>
+                                                <span title="Matière"><i class="fa green fa-book"></i>#{poste.matiere.libelle}</span>
+                                                <h:panelGroup rendered="#{poste.niveauScolaire==1}"><span title="Niveau"><i class="fa green fa-users"></i>1ère Année</span></h:panelGroup>
+                                                <h:panelGroup rendered="#{poste.niveauScolaire==2}"><span title="Niveau"><i class="fa green fa-users"></i>2ème Année</span></h:panelGroup>
+                                                <h:panelGroup rendered="#{poste.niveauScolaire==3}"><span title="Niveau"><i class="fa green fa-users"></i>3ème Année</span></h:panelGroup>
+                                                <br></br>
+                                                <span title="Filière"><i class="fa green fa-sitemap"></i>#{poste.filiere}</span>
+                                                <span>
+                                                    <i class="fa green fa-calendar"></i>
+                                                    <h:outputText value="#{poste.date}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                                                    </h:outputText>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p style="overflow: hidden; height: 91px;">#{poste.descriptionProbleme}.<br></br>
+                                            </p>
+                                            <h:commandLink value="Suite..." action="#{posteDiscussionController.gotoDetail(poste)}"/><i class="fa green fa-angle-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr></hr>
+                                </div>
+                            </div>
+                            <!-- Course End -->
+                        </ui:repeat>
+                    </h:form>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

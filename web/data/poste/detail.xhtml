@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:outputStylesheet name="css/commentaire.css" />
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Detail du Poste</ui:define>
+        <ui:define name="content">
+            <div class="row">
+
+                <!-- ==== SIDEBAR START == -->
+
+                <div class="col-sm-4">
+                    <!-- ==== COURSE DATA START == -->
+                    <div class="widget" data-scroll-reveal="x">
+                        <ul>
+                            <li class="price text-center">
+                                FICHE POSTE
+                            </li>
+                            <h:panelGroup rendered="#{posteCoursController.posteCours.typePosteur=='PROFESSEUR'}">
+                                <li class="course-data" title="Dfficulté">
+                                    <span><i class="icon icon-068"></i><span class="pull-right">#{posteCoursController.posteCours.difficulte}</span></span>
+                                </li>
+                            </h:panelGroup>
+                            <li class="course-data" title="Matière">
+                                <span class="fa fa-book green"></span>
+                                <span class="pull-right">#{posteCoursController.posteCours.matiere.libelle}</span>
+                            </li>
+                            <li class="course-data" title="Niveau Scolaire">
+                                <span class="fa fa-group green"></span>
+                                <h:panelGroup rendered="#{posteCoursController.posteCours.niveauScolaire==1}"><span title="Niveau" class="pull-right">1ère Année</span></h:panelGroup>
+                                <h:panelGroup rendered="#{posteCoursController.posteCours.niveauScolaire==2}"><span title="Niveau" class="pull-right">2ème Année</span></h:panelGroup>
+                                <h:panelGroup rendered="#{posteCoursController.posteCours.niveauScolaire==3}"><span title="Niveau" class="pull-right">3ème Année</span></h:panelGroup>
+                            </li>
+                            <li class="course-data" title="Filière">
+                                <span class="fa fa-sitemap green"></span>
+                                <span class="pull-right">#{posteCoursController.posteCours.filiere}</span>
+                            </li>
+                            <li class="course-data" title="Date Poste">
+                                <span class="fa fa-calendar green"></span>
+                                <span class="pull-right">
+                                    <h:outputText value="#{posteCoursController.posteCours.date}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </span>
+                            </li>
+                        </ul>
+                        <h:form>
+                            <p>
+                                <h:commandLink id='likeBtn' class="btn btn-primary fa fa-thumbs-o-up fa-2x" title="Like"></h:commandLink>
+                                <h:commandLink id='downloadBtn' class="btn btn-primary fa fa-download fa-2x pull-right" title="Télecharger" action="#{posteCoursController.download()}"></h:commandLink>
+                            </p>
+
+                        </h:form>
+                    </div>
+                    <!-- ==== COURSE DATA END == -->
+
+                    <!-- ==== POSTER START == -->
+                    <div class="widget" data-scroll-reveal='x'>
+                        <h3>Posteur</h3>
+                        <div class="teacher row">
+                            <div class="col-sm-12">
+                                <h:graphicImage rendered="#{posteCoursController.posteCours.posteur.avatar==null}" height="30px" width="30px" name="avatars/default159258005521.jpg" class="img-circle pull-left"/>
+                                <h:graphicImage rendered="#{posteCoursController.posteCours.posteur.avatar!=null}" height="30px" width="30px" library="avatars" name="#{posteCoursController.posteCours.posteur.avatar}" class="img-circle pull-left"/>
+                                <h5><span class="fa fa-user green" style="margin-right: 40px;"></span><a>#{posteCoursController.posteCours.posteur.login}</a></h5>
+                                <p><span class="fa fa-envelope green" style="margin-right: 36px;"></span>#{posteCoursController.fullPoster.email}</p>
+                                <p><span class="fa fa-calendar green" style="margin-right: 36px;"></span><h:outputText value="#{posteCoursController.fullPoster.dateInscription}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                                    </h:outputText></p>
+                            </div>
+                        </div>
+                        <a href="">Profile <i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- ==== POSTER END == -->
+                </div>
+                <!-- ==== SIDEBAR END == -->
+
+                <!-- ==== COURSES START == -->
+
+                <div class="col-sm-8">
+                    <h2 class="lesson-title text-center" style="color: #8FB488;">#{posteCoursController.posteCours.titre}</h2>
+                    <div>
+                        <h:graphicImage name="images/matieres/#{posteCoursController.posteCours.matiere.picture}" class="img-responsive" width="300px" height="300px" style="float: left; margin-right: 7px; margin-bottom: 20px;"/>
+                        <p style="margin-top: 36px;">#{posteCoursController.posteCours.description}</p>
+                    </div>
+
+                    <div class="detailBox" style=" width: 100%; clear: both;">
+                        <div class="titleBox">
+                            <label>Liste Des Commentaires</label>
+
+                        </div>
+                        <h:form class="form-inline">
+                            <div class="actionBox" >
+
+                                <ul class="commentList" id="commentList">
+                                    <ui:repeat value="#{posteCoursController.commentaires}"  var="item">
+                                        <li>
+                                            <div class="commenterImage">
+                                                <h:graphicImage rendered="#{item.posteur.avatar==null}" height="30px" name="avatars/default159258005521.jpg" class="img-circle img-nav-top"/>
+                                                <h:graphicImage rendered="#{item.posteur.avatar!=null}" height="30px" name="avatars/#{item.posteur.avatar}" class="img-circle img-nav-top"/>
+                                            </div>
+                                            <div class="commentText">
+                                                <p class=""> #{item.contenu}</p> <span class="date sub-text"> <h:outputText value="#{item.date}"> 
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" /> </h:outputText> <span class="label label-info">#{item.posteur.login}</span></span>
+
+                                            </div>
+                                        </li>
+                                    </ui:repeat>
+
+
+
+                                </ul>
+                                <h:panelGroup class="form-group" rendered="#{userController.connectedUser.login!=null}" style="width: 100%">
+                                    <div class="form-group" style=" width: 84%;" >
+                                        <h:inputTextarea id="content-input" style=" width: 98%;"  pt:placeholder="Ajouter un commentaire" class="form-control" value="#{posteCoursController.newCommentaire.contenu}"></h:inputTextarea>
+                                    </div>
+
+                                    <h:commandButton  class="btn btn-info" value="Commenter" style="width: 116px;">
+                                        <f:ajax execute="content-input" listener="#{posteCoursController.createCommentaire(event)}" render="@form" />
+                                    </h:commandButton>
+                                </h:panelGroup>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+        <ui:define name="lkmala">
+            <!-- ========== RELATED COURSES START ========== -->
+
+            <section id="featured-posts" class="alt-background">
+                <div class="container">
+
+                    <h2 class="text-center carousel-title">
+                        Cours du même niveau scolaire
+                    </h2>
+
+                    <!-- OWL CAROUSEL START -->
+                    <div class="owl-carousel">
+
+                        <ui:repeat value="#{posteCoursController.posteByNiveau(posteCoursController.posteCours.id,
+                                            posteCoursController.posteCours.niveauScolaire, 5)}" var="item">
+                            <div class="item" style="height: 400px; width: 320px;">
+                                <h:graphicImage style="height: 280px; width: 280px;" name="images/matieres/#{item.matiere.libelle}.jpg" alt=""  />
+                                <h3><a href="#">#{item.titre}</a></h3>
+                                <div class="meta">
+                                    <p><span href="#" class="label label-info" style="font-size: small;">#{item.posteur.login}</span></p>
+                                    <h:panelGroup rendered="#{item.difficulte!=null}">
+                                        <p><i class="icon icon-068 green"> </i>#{item.difficulte}</p>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="price">15 <span class="fa fa-thumbs-o-up"></span></div>
+                            </div>
+                        </ui:repeat>
+
+                    </div>
+                    <!-- OWL CAROUSEL END -->
+
+                </div>
+            </section>
+
+            <!-- ========== RELATED COURSES END ========== -->
+        </ui:define>
+        <script>
+                $('#likeBtn').on('click',function (e) {
+                console.log('btn clicked');
+                e.preventDefault();
+                var $this = $(this);
+                if($this.hasClass('fa-thumbs-o-up')){
+                console.log('fa-thumbs-o-up');
+                $this.removeClass('fa-thumbs-o-up');
+                $this.removeClass('fa-thumbs-o-down');
+                }
+                });
+            </script>
+    </ui:composition>
+</html>
+

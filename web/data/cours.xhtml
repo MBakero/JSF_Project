@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">Cours</ui:define>
+        <ui:define name="content">
+            <section id="content">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- ==== SIDEBAR START == -->
+
+                        <div class="col-sm-4">
+
+                            <!-- ==== FITER START == -->
+                            <div class="widget" data-scroll-reveal="">
+                                <h:form >
+                                    <h3>Filtrer par année</h3>
+                                    <ul>
+                                        <li class="checkbox">
+                                            <label><h:selectManyCheckbox > 1ère année <span class="pull-right">4</span> </h:selectManyCheckbox></label>
+                                        </li>
+                                        <li class="checkbox">
+                                            <label><h:selectManyCheckbox > 2ème année <span class="pull-right">7</span> </h:selectManyCheckbox></label>
+                                        </li>
+                                        <li class="checkbox">
+                                            <label><h:selectManyCheckbox > 3ème année <span class="pull-right">5</span> </h:selectManyCheckbox></label>
+                                        </li>
+                                    </ul>
+                                    <button type="submit" class="btn btn-primary">Appliquer</button>
+                                </h:form>
+                            </div>
+                            <!-- ==== FITER END == -->
+
+                        </div>
+
+                        <!-- ==== SIDEBAR END == -->
+
+                        <!-- ==== COURSES START == -->
+
+                        <div class="col-sm-8">
+
+                            <div class="courses">
+
+                                <!-- Course Start -->
+                                <div class="course row" data-scroll-reveal="">
+                                    <div class="col-sm-4">
+                                        <a href="courses-details-left-sidebar.html"><h:graphicImage name="images/java.png" alt="" class="img-responsive" /></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-8">
+                                                <h3><a href="courses-details-left-sidebar.html">JAVA</a></h3>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-user"></i><a href="teachers-profile.html">Professeur X</a></span>
+                                                    <span><i class="fa fa-folder"></i><a href="#">Langages de programmation</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br></br>
+                                                    <a href="courses-details-left-sidebar.html">Suite... <i class="fa fa-angle-right"></i></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr> </hr>
+                                    </div>
+                                </div>
+                                <!-- Course End -->
+
+                                <!-- Course Start -->
+                                <div class="course row" data-scroll-reveal="">
+                                    <div class="col-sm-4">
+                                        <a href="courses-details-left-sidebar.html"><h:graphicImage name="images/php.jpg" alt="" class="img-responsive" /></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-8">
+                                                <h3><a href="courses-details-left-sidebar.html">php</a></h3>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-user"></i><a href="teachers-profile.html">Professeur X</a></span>
+                                                    <span><i class="fa fa-folder"></i><a href="#">Developpement Web</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br></br>
+                                                    <a href="courses-details-left-sidebar.html">Suite... <i class="fa fa-angle-right"></i></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr> </hr>
+                                    </div>
+                                </div>
+                                <!-- Course End -->
+
+                                <!-- Course Start -->
+                                <div class="course row" data-scroll-reveal="">
+                                    <div class="col-sm-4">
+                                        <a href="courses-details-left-sidebar.html"><h:graphicImage name="images/uml.gif" alt="" class="img-responsive" /></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-8">
+                                                <h3><a href="courses-details-left-sidebar.html">UML</a></h3>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-user"></i><a href="teachers-profile.html">Professeur X</a></span>
+                                                    <span><i class="fa fa-folder"></i><a href="#">Modélisation</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br></br>
+
+                                                    <a href="courses-details-left-sidebar.html">Suite... <i class="fa fa-angle-right"></i></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr></hr>
+                                    </div>
+                                </div>
+                                <!-- Course End -->
+
+                                <!-- Course Start -->
+                                <div class="course row" data-scroll-reveal="">
+                                    <div class="col-sm-4">
+                                        <a href="courses-details-left-sidebar.html"><h:graphicImage name="images/android.jpg" alt="" class="img-responsive" /></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-9 col-sm-8">
+                                                <h3><a href="courses-details-left-sidebar.html">Android</a></h3>
+                                                <div class="meta">
+                                                    <span><i class="fa fa-user"></i><a href="teachers-profile.html">Professeur X</a></span>
+                                                    <span><i class="fa fa-folder"></i><a href="#">Mobile</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-sm-12">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet pharetra nunc, non scelerisque ligula. Cras vel justo nulla. Vestibulum a sollicitudin metus, faucibus fermentum leo. Nulla ut purus vel nunc ultricies dignissim at at nunc. Vivamus tempor eget lorem non commodo. Vivamus mattis massa in ipsum molestie, eu aliquet lectus pulvinar.<br></br>
+                                                    <a href="courses-details-left-sidebar.html">Suite... <i class="fa fa-angle-right"></i></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr></hr>
+                                    </div>
+                                </div>
+                                <!-- Course End -->
+
+                                <!-- Pagination Start -->
+                                <div class="row" data-scroll-reveal="">
+                                    <div class="col-sm-6">
+                                        <a class="btn btn-primary lesson-prev"><i class="fa fa-caret-left"></i> &nbsp; Précédent</a>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <a class="btn btn-primary lesson-next">Suivant &nbsp; <i class="fa fa-caret-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- Pagination End -->
+
+                            </div>
+
+                        </div>
+
+                        <!-- ==== COURSES END == -->
+
+                    </div>
+                </div>
+            </section>
+
+        </ui:define>
+
+
+    </ui:composition>
+
+</html>
+

@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/bootstrap-switch.min.css"/>
+        <h:outputStylesheet name="css/font-awesome.min.css"/>
+        <h:outputStylesheet name="css/dataTables.bootstrap.css"/>
+        <h:outputStylesheet name="css/jquery.growl.css" />
+        <h:outputStylesheet name="css/app.css"/>
+        <h:outputScript name="js/bootstrap.js" />
+        <h:outputScript name="js/bootstrap-switch.min.js" />
+        <!--<h:outputScript name="js/jquery.dataTables.js" />-->
+        <h:outputScript name="js/dataTables.bootstrap.js" />
+        <!--<h:outputScript name="js/jquery.growl.js" />-->
+        <h:outputScript name="js/app.js" />
+        <h:outputScript library="js" name="jquery-plugin.js"/>
+    </h:head>
+    <h:body>
+        <p:outputPanel id="templating" style="display:block">
+            <div class="content">
+                <h:form id="form-navs" enctype="multipart/form-data">
+                    <nav class="navbar navbar-default nav-top navbar-static-top" role="navigation">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <h:graphicImage name="images/logo.png" alt="ENSIAS Plateforme" class="img-responsive logo" /> 
+                            </a>
+                        </div>
+                        <div class="nav-top-links">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <h:link value="Front-Office" outcome="/index" style="color: white; text-decoration: underline;"></h:link>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-bell fa-fw"></i>
+                                        <h:panelGroup > 
+                                            <span class="badge badge-notification"></span>
+                                        </h:panelGroup>
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle user" data-toggle="dropdown" href="#">
+                                        #{userController.connectedUser.prenom} #{userController.connectedUser.nom} <h:graphicImage library="avatars" name="#{userController.connectedUser.avatar}" class="img-circle img-nav-top"/>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user animated fadeInUp">
+                                        <li>
+                                            <h:link >
+                                                <i class="fa fa-user fa-fw"></i> Profile
+                                            </h:link>
+                                        </li>
+                                        <li>
+                                            <h:link >
+                                                <i class="fa fa-gear fa-fw"></i> Paramètres
+                                            </h:link>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><h:commandLink action="#{userController.logout()}"><i class="fa fa-sign-out fa-fw"></i> DECONNEXION</h:commandLink></li>
+                                    </ul>                        
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <nav id="nav-left" class="navbar-default navbar-static-side hidden-xs" role="navigation">
+                        <div class="sidebar-collapse">
+                            <ul class="nav">
+                                <li>
+                                    <h:link >
+                                        <i class="fa fa-desktop fa-fw"></i> Tableau de bord
+                                    </h:link>
+                                </li>
+                                <li class="nav-has-child">
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Gestion des Professeurs<i class="fa fa-angle-down pull-right"></i></a>
+                                    <ul class="nav nav-secondary">
+                                        <li>
+                                            <h:link outcome="/data/admin/professeurs/create" value="Créer Professeur"/>
+                                        </li>
+                                        <li>
+                                            <h:link outcome="/data/admin/professeurs/list" value="Liste des professeurs"/>
+                                        </li> 
+                                    </ul>
+                                </li>
+                                <li class="nav-has-child">
+                                    <a href="#"><i class="fa fa-users fa-fw"></i>Gestion des Etudiants<i class="fa fa-angle-down pull-right"></i></a>
+                                    <ul class="nav nav-secondary">
+                                        <li>
+                                            <h:link outcome="/data/admin/etudiants/create" value="Créer Etudiant"/>
+                                        </li>
+                                        <li>
+                                            <h:link outcome="/data/admin/etudiants/list" value="Liste des Etudiants"/>
+                                        </li> 
+                                    </ul>
+                                </li>
+                                <li class="nav-has-child">
+                                    <a href="#"><i class="fa fa-book fa-fw"></i>Gestion des Matières<i class="fa fa-angle-down pull-right"></i></a>
+                                    <ul class="nav nav-secondary">
+                                        <li>
+                                            <h:link outcome="/data/admin/matieres/create" value="Créer Matière"/>
+                                        </li>
+                                        <li>
+                                            <h:link outcome="/data/admin/matieres/list" value="Liste des matières"/>
+                                        </li> 
+                                    </ul>
+                                </li>
+                                <li class="nav-has-child">
+                                    <a href="#" style="padding-right: 12px;"><i class="fa fa-crosshairs fa-fw"></i>Gestion des transgressions<i class="fa fa-angle-down"></i></a>
+                                    <ul class="nav nav-secondary">
+                                        <li>
+                                            <h:link  value="Postes Signalés"/>
+                                        </li>
+                                        <li>
+                                            <h:link  value="Etudiants Avertis"/>
+                                        </li> 
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </h:form>
+                <div class="content-body container-fluid">
+                    <div class="row">
+                        <div class="title-body">
+                            <h3><ui:insert name="title">Default title</ui:insert></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="panel panel-default content-panel">
+                            <div class="panel-body">
+                                <ui:insert name="body">Default Body</ui:insert>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p:outputPanel>
+    </h:body>
+</html>
